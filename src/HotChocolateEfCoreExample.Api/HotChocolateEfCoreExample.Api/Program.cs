@@ -1,4 +1,7 @@
+using HotChocolateEfCoreExample.Api.Extensions;
 using HotChocolateEfCoreExample.Application.GraphQL;
+using HotChocolateEfCoreExample.Application.GraphQL.Mutations;
+using HotChocolateEfCoreExample.Application.GraphQL.Resolvers;
 using HotChocolateEfCoreExample.Application.Interfaces;
 using HotChocolateEfCoreExample.Application.Repositories;
 using HotChocolateEfCoreExample.DAL.Data;
@@ -12,12 +15,16 @@ builder.Services.AddDbContext<AdventureWorks2019Context>(
 
 builder.Services
     .AddGraphQLServer()
+    .UseDefaultPipeline()
+    .AddErrorFilter<GraphQLErrorFilter>()
     .AddProjections()
     .AddFiltering()
     .AddSorting()
-    .RegisterDbContext<AdventureWorks2019Context>()
+    .RegisterDbContext<AdventureWorks2019Context>(DbContextKind.Pooled)
     .AddQueryType(d => d.Name("Query"))
-    .AddType<CustomerResolver>()
+    .AddResolvers()
+    .AddMutationType(d => d.Name("Mutation"))
+    .AddMutations()
     ;
 
 builder.Services.AddTransient<IGenericRepository<Customer, int>, CustomerRepository>();

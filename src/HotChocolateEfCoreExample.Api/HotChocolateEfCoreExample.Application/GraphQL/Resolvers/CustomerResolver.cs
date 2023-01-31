@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HotChocolate;
-using HotChocolate.Configuration.Validation;
+﻿using HotChocolate;
 using HotChocolate.Types;
 using HotChocolateEfCoreExample.Application.Interfaces;
 using HotChocolateEfCoreExample.DAL.Models;
 
-namespace HotChocolateEfCoreExample.Application.GraphQL
+namespace HotChocolateEfCoreExample.Application.GraphQL.Resolvers
 {
     [ExtendObjectType("Query")]
     public class CustomerResolver : BaseResolver<Customer, int>

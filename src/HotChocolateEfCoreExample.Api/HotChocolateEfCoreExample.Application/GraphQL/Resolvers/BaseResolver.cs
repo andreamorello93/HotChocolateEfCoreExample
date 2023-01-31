@@ -2,7 +2,7 @@
 using HotChocolate.Types;
 using HotChocolateEfCoreExample.Application.Interfaces;
 
-namespace HotChocolateEfCoreExample.Application.GraphQL
+namespace HotChocolateEfCoreExample.Application.GraphQL.Resolvers
 {
     public class BaseResolver<TModel, TKey> where TModel : class
     {

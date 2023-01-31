@@ -9,13 +9,14 @@ namespace HotChocolateEfCoreExample.Application.Interfaces
 {
     public interface IGenericRepository<TModel, TKey> where TModel : class
     {
-        TModel GetById(TKey id);
-        IEnumerable<TModel> GetAll();
+        Task<TModel> GetById(TKey id);
+        Task<IEnumerable<TModel>> GetAll();
         IQueryable<TModel> Queryable();
-        IEnumerable<TModel> Find(Expression<Func<TModel, bool>> expression);
-        void Add(TModel entity);
-        void AddRange(IEnumerable<TModel> entities);
-        void Remove(TModel entity);
-        void RemoveRange(IEnumerable<TModel> entities);
+        Task<IEnumerable<TModel>> Find(Expression<Func<TModel, bool>> expression);
+        Task<TModel> Insert(TModel entity);
+        Task<TModel> Update(TModel entity);
+        Task<IEnumerable<TModel>> AddRange(IEnumerable<TModel> entities);
+        Task<bool> Remove(TModel entity);
+        Task<bool> RemoveRange(IEnumerable<TModel> entities);
     }
 }

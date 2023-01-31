@@ -20,13 +20,24 @@ namespace HotChocolateEfCoreExample.Application.Repositories
             _context = context;
             _dbSet = _context.Set<TModel>();
         }
-        public void Add(TModel entity)
+        public async Task<TModel> Insert(TModel entity)
         {
-            _dbSet.Add(entity);
+             _dbSet.Add(entity);
+             await _context.SaveChangesAsync();
+             return entity;
         }
-        public void AddRange(IEnumerable<TModel> entities)
+
+        public async Task<TModel> Update(TModel entity)
+        {
+            _dbSet.Update(entity);
+            await _context.SaveChangesAsync();
+            return entity;
+        }
+        public async Task<IEnumerable<TModel>> AddRange(IEnumerable<TModel> entities)
         {
             _dbSet.AddRange(entities);
+            await _context.SaveChangesAsync();
+            return entities;
         }
 
         public IQueryable<TModel> Queryable()
@@ -34,25 +45,29 @@ namespace HotChocolateEfCoreExample.Application.Repositories
            return _dbSet;
         }
 
-        public IEnumerable<TModel> Find(Expression<Func<TModel, bool>> expression)
+        public async Task<IEnumerable<TModel>> Find(Expression<Func<TModel, bool>> expression)
         {
-            return _dbSet.Where(expression);
+            return await _dbSet.Where(expression).ToListAsync();
         }
-        public IEnumerable<TModel> GetAll()
+        public async Task<IEnumerable<TModel>> GetAll()
         {
-            return _dbSet.ToList();
+            return await _dbSet.ToListAsync();
         }
-        public TModel GetById(TKey id)
+        public async Task<TModel> GetById(TKey id)
         {
-            return _dbSet.Find(id);
+            return await _dbSet.FindAsync(id);
         }
-        public void Remove(TModel entity)
+        public async Task<bool> Remove(TModel entity)
         {
             _dbSet.Remove(entity);
+            await _context.SaveChangesAsync();
+            return true;
         }
-        public void RemoveRange(IEnumerable<TModel> entities)
+        public async Task<bool> RemoveRange(IEnumerable<TModel> entities)
         {
             _dbSet.RemoveRange(entities);
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }
