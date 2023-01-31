@@ -9,7 +9,7 @@ namespace HotChocolateEfCoreExample.Api.Extensions
         public static IRequestExecutorBuilder AddResolvers(this IRequestExecutorBuilder requestExecutionBuilder)
         {
             return requestExecutionBuilder
-                .AddType<CustomerResolver>()
+                    .AddType<CustomerResolver>()
                 ;
         }
 

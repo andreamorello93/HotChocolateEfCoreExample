@@ -1,3 +1,4 @@
+using HotChocolate.Types.Pagination;
 using HotChocolateEfCoreExample.Api.Extensions;
 using HotChocolateEfCoreExample.Application.GraphQL;
 using HotChocolateEfCoreExample.Application.GraphQL.Mutations;
@@ -25,6 +26,7 @@ builder.Services
     .AddResolvers()
     .AddMutationType(d => d.Name("Mutation"))
     .AddMutations()
+    .SetPagingOptions(new PagingOptions { DefaultPageSize = 500, MaxPageSize = 500 })
     ;
 
 builder.Services.AddTransient<IGenericRepository<Customer, int>, CustomerRepository>();
