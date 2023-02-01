@@ -29,7 +29,7 @@ builder.Services
     .SetPagingOptions(new PagingOptions { DefaultPageSize = 500, MaxPageSize = 500 })
     ;
 
-builder.Services.AddTransient<IGenericRepository<Customer, int>, CustomerRepository>();
+builder.Services.AddRepositories();
 
 var app = builder.Build();
 

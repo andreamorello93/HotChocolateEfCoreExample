@@ -4,7 +4,7 @@ using HotChocolateEfCoreExample.Application.GraphQL.Resolvers;
 
 namespace HotChocolateEfCoreExample.Api.Extensions
 {
-    public static class RequestBuilderExtensions
+    public static class RequestExecutorBuilderExtensions
     {
         public static IRequestExecutorBuilder AddResolvers(this IRequestExecutorBuilder requestExecutionBuilder)
         {
