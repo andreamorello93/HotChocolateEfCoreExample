@@ -9,6 +9,9 @@ namespace HotChocolateEfCoreExample.Application.GraphQL.Resolvers
     public class CustomerResolver : BaseResolver<Customer, int>
     {
         [GraphQLName("Customers")]
-        public override IQueryable<Customer> Get(IGenericRepository<Customer, int> repository) => base.Get(repository);
+        public override IQueryable<Customer> GetUsePaging(IGenericRepository<Customer, int> repository) => base.GetUsePaging(repository);
+
+        [GraphQLName("CustomersOffsetPaging")]
+        public override IQueryable<Customer> GetUseOffsetPaging(IGenericRepository<Customer, int> repository) => base.GetUseOffsetPaging(repository);
     }
 }
