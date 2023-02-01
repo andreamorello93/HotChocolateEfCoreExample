@@ -57,13 +57,14 @@ namespace HotChocolateEfCoreExample.Application.Repositories
         {
             return await _dbSet.FindAsync(id);
         }
-        public async Task<bool> Remove(TModel entity)
+        public async Task<bool> Delete(TKey id)
         {
+            var entity = await GetById(id);
             _dbSet.Remove(entity);
             await _context.SaveChangesAsync();
             return true;
         }
-        public async Task<bool> RemoveRange(IEnumerable<TModel> entities)
+        public async Task<bool> DeleteRange(IEnumerable<TModel> entities)
         {
             _dbSet.RemoveRange(entities);
             await _context.SaveChangesAsync();

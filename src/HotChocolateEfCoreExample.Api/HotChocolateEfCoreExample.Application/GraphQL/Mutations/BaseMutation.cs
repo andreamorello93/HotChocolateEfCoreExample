@@ -15,6 +15,6 @@ namespace HotChocolateEfCoreExample.Application.GraphQL.Mutations
 
         public virtual Task<TModel> Update(TModel entity, IGenericRepository<TModel, TKey> repository) => repository.Update(entity);
 
-        public virtual Task<bool> Delete(TModel entity, IGenericRepository<TModel, TKey> repository) => repository.Remove(entity);
+        public virtual Task<bool> Delete(TKey id, IGenericRepository<TModel, TKey> repository) => repository.Delete(id);
     }
 }

@@ -16,7 +16,7 @@ namespace HotChocolateEfCoreExample.Application.Interfaces
         Task<TModel> Insert(TModel entity);
         Task<TModel> Update(TModel entity);
         Task<IEnumerable<TModel>> AddRange(IEnumerable<TModel> entities);
-        Task<bool> Remove(TModel entity);
-        Task<bool> RemoveRange(IEnumerable<TModel> entities);
+        Task<bool> Delete(TKey id);
+        Task<bool> DeleteRange(IEnumerable<TModel> entities);
     }
 }
