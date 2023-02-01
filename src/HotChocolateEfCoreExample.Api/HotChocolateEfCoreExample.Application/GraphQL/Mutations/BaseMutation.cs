@@ -13,7 +13,7 @@ namespace HotChocolateEfCoreExample.Application.GraphQL.Mutations
     {
         public virtual Task<TModel> Insert(TModel entity, IGenericRepository<TModel, TKey> repository) => repository.Insert(entity);
 
-        public virtual Task<TModel> Update(TModel entity, IGenericRepository<TModel, TKey> repository) => repository.Update(entity);
+        public virtual Task<TModel> Update(TModel entity, TKey id, IGenericRepository<TModel, TKey> repository) => repository.Update(entity, id);
 
         public virtual Task<bool> Delete(TKey id, IGenericRepository<TModel, TKey> repository) => repository.Delete(id);
     }

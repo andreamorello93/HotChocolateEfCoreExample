@@ -16,7 +16,7 @@ namespace HotChocolateEfCoreExample.Application.GraphQL.Mutations
         [GraphQLName("CustomerInsert")]
         public override Task<Customer> Insert(Customer entity, [Service] IGenericRepository<Customer, int> repository) => base.Insert(entity, repository);
         [GraphQLName("CustomerUpdate")]
-        public override Task<Customer> Update(Customer entity, [Service] IGenericRepository<Customer, int> repository) => base.Update(entity, repository);
+        public override Task<Customer> Update(Customer entity, int id, [Service] IGenericRepository<Customer, int> repository) => base.Update(entity, entity.CustomerId, repository);
         [GraphQLName("CustomerDelete")]
         public override Task<bool> Delete(int id, [Service] IGenericRepository<Customer, int> repository) => base.Delete(id, repository);
     }

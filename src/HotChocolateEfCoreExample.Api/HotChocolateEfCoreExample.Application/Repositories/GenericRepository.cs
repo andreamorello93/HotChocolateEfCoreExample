@@ -27,11 +27,12 @@ namespace HotChocolateEfCoreExample.Application.Repositories
              return entity;
         }
 
-        public async Task<TModel> Update(TModel entity)
+        public async Task<TModel> Update(TModel entity, TKey id)
         {
-            _dbSet.Update(entity);
+            var entityDb = await GetById(id);
+            _dbSet.Entry(entityDb).CurrentValues.SetValues(entity);
             await _context.SaveChangesAsync();
-            return entity;
+            return entityDb;
         }
         public async Task<IEnumerable<TModel>> AddRange(IEnumerable<TModel> entities)
         {
