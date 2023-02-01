@@ -10,12 +10,12 @@ namespace HotChocolateEfCoreExample.Application.GraphQL.Resolvers
         [UseProjection]
         [UseFiltering]
         [UseSorting]
-        public virtual IQueryable<TModel> GetUsePaging([Service] IGenericRepository<TModel, TKey> repository) => repository.Queryable();
+        public virtual IQueryable<TModel> GetUsingPaging([Service] IGenericRepository<TModel, TKey> repository) => repository.Queryable();
 
         [UseOffsetPaging]
         [UseProjection]
         [UseFiltering]
         [UseSorting]
-        public virtual IQueryable<TModel> GetUseOffsetPaging([Service] IGenericRepository<TModel, TKey> repository) => repository.Queryable();
+        public virtual IQueryable<TModel> GetUsingOffsetPaging([Service] IGenericRepository<TModel, TKey> repository) => repository.Queryable();
     }
 }
