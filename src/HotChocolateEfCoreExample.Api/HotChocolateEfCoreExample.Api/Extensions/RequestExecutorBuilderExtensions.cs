@@ -10,6 +10,7 @@ namespace HotChocolateEfCoreExample.Api.Extensions
         {
             return requestExecutionBuilder
                     .AddType<CustomerResolver>()
+                    .AddType<CustomerType>()
                 ;
         }
 

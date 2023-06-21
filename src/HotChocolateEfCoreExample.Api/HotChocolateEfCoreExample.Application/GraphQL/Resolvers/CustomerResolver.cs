@@ -14,4 +14,13 @@ namespace HotChocolateEfCoreExample.Application.GraphQL.Resolvers
         [GraphQLName("CustomersOffsetPaging")]
         public override IQueryable<Customer> GetUsingOffsetPaging(IGenericRepository<Customer, int> repository) => base.GetUsingOffsetPaging(repository);
     }
+
+    public class CustomerType : ObjectType<Customer>
+    {
+        protected override void Configure(IObjectTypeDescriptor<Customer> descriptor)
+        {
+            descriptor.Field(f => f.SalesOrderHeader).UseFiltering();
+        }
+    }
+
 }
